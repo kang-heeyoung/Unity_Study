@@ -26,11 +26,13 @@ public class Movement : MonoBehaviour
         //float h = Input.GetAxisRaw("Horizontal");
         //float v = Input.GetAxisRaw("Vertical");
 
-
+        
         Vector3 dir = new Vector3(h, 0, v); // x, y, z
-        Debug.Log($"현재 입력 : {dir}");
+        Vector3 normalDir = dir.normalized;
 
         transform.position += dir * moveSpeed * Time.deltaTime;
+
+        transform.LookAt(transform.position + normalDir);
 
 
         //if (Input.GetKey(KeyCode.W)) // 앞으로 가는 기능
