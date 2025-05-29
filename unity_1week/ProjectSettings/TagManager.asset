@@ -8,6 +8,11 @@ TagManager:
   - Enemy
   - Monster
   - Ground
+  - Score10
+  - Score30
+  - Score50
+  - GameOver
+  - Ball
   layers:
   - Default
   - TransparentFX
