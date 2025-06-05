@@ -1,12 +1,16 @@
+using System;
 using UnityEngine;
 
 public class DoorEvent2 : MonoBehaviour
 {
     private Animator anim;
+
+    public GameObject doorLock;
+
     public string openKey;
     public string closeKey;
 
-    private void Start()
+    void Start()
     {
         anim = GetComponent<Animator>();
     }
@@ -15,7 +19,9 @@ public class DoorEvent2 : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            anim.SetTrigger(openKey);
+            doorLock.SetActive(true);
+
+            // anim.SetTrigger(openKey);
         }
     }
 
@@ -23,7 +29,9 @@ public class DoorEvent2 : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            anim.SetTrigger(closeKey);
+            doorLock.SetActive(false);
+
+            // anim.SetTrigger(closeKey);
         }
     }
 }
