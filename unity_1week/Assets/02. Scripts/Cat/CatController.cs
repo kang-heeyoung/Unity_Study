@@ -35,6 +35,12 @@ public class CatController : MonoBehaviour
                 catRb.linearVelocityY = limitPower;
             
         }
+
+        // 점프 시 고양이 회전
+        var catRotation = transform.eulerAngles;
+        catRotation.z = catRb.linearVelocityY * 2.5f;
+        transform.eulerAngles = catRotation;
+
     }
 
     private void OnCollisionEnter2D(Collision2D other)
