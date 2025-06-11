@@ -6,8 +6,11 @@ namespace Cat
 {
     public class UIManager : MonoBehaviour
     {
+        public SoundManager soundManager;
+
         public GameObject playObj;
         public GameObject introUI;
+        public GameObject playUI;
 
         public TMP_InputField inputField;
         public TextMeshProUGUI nameTextUI;
@@ -29,11 +32,14 @@ namespace Cat
             }
             else
             {
-                playObj.SetActive(true);
-                introUI.SetActive(false);
-
-                Debug.Log($"{nameTextUI} ют╥б");
                 nameTextUI.text = inputField.text;
+                soundManager.SetBGMSound("Play");
+
+                GameManager.isPlay = true;
+
+                playObj.SetActive(true);
+                playUI.SetActive(true);
+                introUI.SetActive(false);
             }
         }
     }

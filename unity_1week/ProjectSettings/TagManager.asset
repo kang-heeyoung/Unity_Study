@@ -13,6 +13,8 @@ TagManager:
   - Score50
   - GameOver
   - Ball
+  - Apple
+  - Pipe
   layers:
   - Default
   - TransparentFX
