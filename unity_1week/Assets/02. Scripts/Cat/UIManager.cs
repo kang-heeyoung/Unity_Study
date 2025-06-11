@@ -17,6 +17,13 @@ namespace Cat
 
         public Button startButton;
 
+        private void Awake()
+        {
+            playObj.SetActive(false);
+            introUI.SetActive(true);
+            playUI.SetActive(false);
+        }
+
         private void Start()
         {
             startButton.onClick.AddListener(OnStartButton);

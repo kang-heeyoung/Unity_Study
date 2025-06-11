@@ -33,7 +33,7 @@ public class ItemEvent : MonoBehaviour
     private void SetRandomSetting(float posX)
     {
         randomPosY = Random.Range(-6.5f, -4.5f);
-        transform.position = new Vector3(returnPosX, randomPosY, 0);
+        transform.position = new Vector3(posX, randomPosY, 0);
 
         pipe.SetActive(false);
         apple.SetActive(false);
