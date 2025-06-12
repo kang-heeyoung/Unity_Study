@@ -1,3 +1,4 @@
+using System.Threading;
 using TMPro;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace Cat
         public TextMeshProUGUI playTimeUI;
         public TextMeshProUGUI scoreUI;
 
-        private float timer;
+        private static float timer;
         public static int score; // 사과를 먹은 개수
         public static bool isPlay;
 
@@ -29,6 +30,12 @@ namespace Cat
 
             playTimeUI.text = $"플레이 시간 : {timer:F0}초";
             scoreUI.text = $"X {score}";
+        }
+
+        public static void ResetPlayUI()
+        {
+            timer = 0f;
+            score = 0;
         }
     }
 }

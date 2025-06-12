@@ -14,12 +14,19 @@ public class ItemEvent : MonoBehaviour
     public float returnPosX = 15f;
     public float randomPosY;
 
+    private Vector3 initPos;
 
-    void Start()
+
+    void Awake()
     {
-        SetRandomSetting(transform.position.x);
-
+        initPos = transform.localPosition;    
     }
+
+    void OnEnable()
+    {
+        SetRandomSetting(initPos.x);    
+    }
+
     void Update()
     {
         transform.position += Vector3.left * moveSpeed * Time.deltaTime;
@@ -38,7 +45,6 @@ public class ItemEvent : MonoBehaviour
         pipe.SetActive(false);
         apple.SetActive(false);
         particle.SetActive(false);
-
 
         colliderType = (ColliderType)Random.Range(0, 3);
 
