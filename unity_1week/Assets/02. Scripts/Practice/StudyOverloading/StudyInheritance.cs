@@ -10,10 +10,10 @@ public class StudyInheritance : MonoBehaviour
         for (int i=0; i<10; i++)
         {
             Student student = new Student();
-            persons.Add(student);
+            //persons.Add(student);
 
             Soldier soldier = new Soldier();
-            persons.Add(soldier);
+            //persons.Add(soldier);
         }
     }
 
