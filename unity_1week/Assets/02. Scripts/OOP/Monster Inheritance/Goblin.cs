@@ -7,4 +7,5 @@ public class Goblin : Monster
         hp = 3f;
         moveSpeed = 3f;
     }
+
 }
