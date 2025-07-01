@@ -16,6 +16,8 @@ public class KnightController_Keyboard : MonoBehaviour
     private bool isAttack;
     private bool isCombo;
 
+    private bool isLadder;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -59,6 +61,22 @@ public class KnightController_Keyboard : MonoBehaviour
         {
             Debug.Log("공격 판정");
         }
+        if (other.CompareTag("Ladder"))
+        {
+            isLadder = true;
+            knightRb.gravityScale = 0f;
+            knightRb.linearVelocity = Vector2.zero;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Ladder"))
+        {
+            isLadder = false;
+            knightRb.gravityScale = 2f;
+            knightRb.linearVelocity = Vector2.zero;
+        }
     }
 
     void InputKeyboard()
@@ -79,6 +97,11 @@ public class KnightController_Keyboard : MonoBehaviour
             transform.localScale = new Vector3(scaleX, 1, 1);
 
             knightRb.linearVelocityX = inputDir.x * moveSpeed;
+        }
+
+        if(isLadder && inputDir.y != 0)
+        {
+            knightRb.linearVelocityY = inputDir.y * moveSpeed;
         }
     }
 

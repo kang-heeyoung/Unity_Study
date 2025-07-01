@@ -15,6 +15,7 @@ TagManager:
   - Ball
   - Apple
   - Pipe
+  - Ladder
   layers:
   - Default
   - TransparentFX
