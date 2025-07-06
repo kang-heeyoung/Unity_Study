@@ -21,6 +21,8 @@ public class SoundController : MonoBehaviour
 
         bgmMute.isOn = bgmAudio.mute;
         eventMute.isOn = eventAudio.mute;
+
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()

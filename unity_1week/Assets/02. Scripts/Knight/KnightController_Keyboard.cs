@@ -1,10 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class KnightController_Keyboard : MonoBehaviour
+public class KnightController_Keyboard : MonoBehaviour, IDamageable
 {
     private Animator animator;
     private Rigidbody2D knightRb;
+    private Collider2D knightCol;
 
     private Vector3 inputDir;
     [SerializeField] private float moveSpeed = 8f;
@@ -18,10 +20,19 @@ public class KnightController_Keyboard : MonoBehaviour
 
     private bool isLadder;
 
+    public float hp = 100f;
+    public float currHp;
+
+    public Image hpBar;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         knightRb = GetComponent<Rigidbody2D>();
+        knightCol = GetComponent<Collider2D>();
+
+        currHp = hp;
+        hpBar.fillAmount = currHp / hp;
     }
 
     void Update() // 일반적인 작업
@@ -42,7 +53,6 @@ public class KnightController_Keyboard : MonoBehaviour
         {
             animator.SetBool("isGround", true);
             isGround = true;
-            Debug.Log("Ground");
         }
     }
 
@@ -59,7 +69,11 @@ public class KnightController_Keyboard : MonoBehaviour
     {
         if (other.CompareTag("Monster"))
         {
-            Debug.Log("공격 판정");
+            if (other.GetComponent<IDamageable>() != null)
+            {
+                other.GetComponent<IDamageable>().TakeDamage(atkDamage);
+                other.GetComponent<Animator>().SetTrigger("Hit");
+            }
         }
         if (other.CompareTag("Ladder"))
         {
@@ -154,4 +168,22 @@ public class KnightController_Keyboard : MonoBehaviour
         animator.SetBool("isCombo", false);
     }
 
+    public void TakeDamage(float damage)
+    {
+        currHp -= damage;
+
+        hpBar.fillAmount = currHp / hp;
+        Debug.Log(currHp);
+
+        if (currHp <= 0f)
+            Death();
+    }
+
+
+    public void Death()
+    {
+        animator.SetTrigger("Death");
+        knightCol.enabled = false;
+        knightRb.gravityScale = 0f;
+    }
 }

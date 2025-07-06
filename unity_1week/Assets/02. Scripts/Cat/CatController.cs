@@ -106,6 +106,7 @@ public class CatController : MonoBehaviour
     {
         yield return new WaitForSeconds(3.5f);
 
+        soundManager.audioSource.Stop();
         videoManager.VideoPlay(isHappy); // 영상 재생 시작
         yield return new WaitForSeconds(1f);
 
@@ -115,7 +116,6 @@ public class CatController : MonoBehaviour
         yield return new WaitForSeconds(3f);
         fadeUI.SetActive(false);
         gameOverUI.SetActive(false);
-        soundManager.audioSource.Stop();
 
         transform.parent.gameObject.SetActive(false); // PLAY 오브젝트 Off
     }
