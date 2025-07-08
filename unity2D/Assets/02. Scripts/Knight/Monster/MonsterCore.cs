@@ -27,6 +27,8 @@ public abstract class MonsterCore : MonoBehaviour, IDamageable
 
     private bool isDead;
 
+    public ItemManager itemManager;
+
     protected virtual void Init(float hp, float speed, float attackTime, float atkDamage)
     {
         this.hp = hp;
@@ -39,6 +41,7 @@ public abstract class MonsterCore : MonoBehaviour, IDamageable
         animator = GetComponent<Animator>();
         monsterRb = GetComponent<Rigidbody2D>();
         monsterColl = GetComponent<Collider2D>();
+        itemManager = FindFirstObjectByType<ItemManager>();
 
         currHp = hp;
         hpBar.fillAmount = currHp / hp;
@@ -105,5 +108,7 @@ public abstract class MonsterCore : MonoBehaviour, IDamageable
         animator.SetTrigger("Death");
         monsterColl.enabled = false;
         monsterRb.gravityScale = 0f;
+
+        itemManager.DropItem(transform.position);
     }
 }
